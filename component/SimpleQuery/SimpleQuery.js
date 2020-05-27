@@ -6,9 +6,9 @@ const authenticationCode = require('../../core/authentication/authenticationCode
 
 class SimpleQuery {
 
-    static async get() {
+    static async get(id) {
         try {
-            return await mysql.select([], '', []);
+            return await mysql.select(['TableA_firstname', 'TableA_lastname'], 'TableA', ['TableA_id' = id]);
         } catch (error) {
             Log.writeError(error);
             throw new APIError(authenticationCode.internal, authenticationError.internal);
